@@ -57,5 +57,5 @@ const CheckIcon = styled(Check)`
   color: ${({ theme, isValid }) =>
     isValid ? theme.mainColor : theme.mediumGrayColor};
 
-  transition: all 0.3s;
+  transition: all 300ms;
 `;
