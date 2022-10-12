@@ -43,6 +43,7 @@ const Input = styled.input`
 
 const CheckIcon = styled(Check)`
   ${positionCenterY()}
+  transform: translateY(-60%);
   right: 10px;
   font-size: 20px;
   color: ${({ theme, isValid }) =>
