@@ -22,8 +22,8 @@ const ContainerInner = styled.div`
   height: 600px;
   padding: 30px;
   box-sizing: border-box;
-  ${flexBox("column", "flex-start")};
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
   border-radius: 10px;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
 `;
