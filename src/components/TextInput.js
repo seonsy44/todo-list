@@ -2,12 +2,19 @@ import styled from "styled-components";
 import { positionCenterY } from "../styles/mixins";
 import { HiOutlineCheckCircle as Check } from "react-icons/hi";
 
-const TextInput = ({ name, type, placeholder, isValid }) => {
+const TextInput = ({ value, onChange, name, type, placeholder, isValid }) => {
   return (
     <>
       <Label for={name}>{name}</Label>
       <InputContainter>
-        <Input name={name} type={type} placeholder={placeholder} id={name} />
+        <Input
+          value={value}
+          onChange={onChange}
+          name={name}
+          type={type}
+          placeholder={placeholder}
+          id={name}
+        />
         <CheckIcon isValid={isValid} />
       </InputContainter>
     </>
@@ -30,11 +37,12 @@ const Input = styled.input`
   height: 50px;
   padding: 10px;
   margin-top: 8px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   box-sizing: border-box;
   border: 1px solid ${({ theme }) => theme.mediumGrayColor};
   background-color: ${({ theme }) => theme.lightGrayColor};
   font-size: 18px;
+  color: ${({ theme }) => theme.mainColor};
 
   &:focus {
     outline: none;
