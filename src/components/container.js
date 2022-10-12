@@ -18,6 +18,7 @@ const ContainerOuter = styled.div`
 `;
 
 const ContainerInner = styled.div`
+  position: relative;
   width: 800px;
   height: 600px;
   padding: 30px;
@@ -26,4 +27,12 @@ const ContainerInner = styled.div`
   overflow-y: scroll;
   border-radius: 10px;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.mediumGrayColor};
+    border-radius: 10px;
+  }
 `;
