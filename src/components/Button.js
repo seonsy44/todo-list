@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-const Button = ({ children, type, isValid, large, onClick }) => {
+const Button = ({ children, type, isValid, large, onClick, style }) => {
   return (
     <StyledButton
       type={type}
@@ -8,6 +8,7 @@ const Button = ({ children, type, isValid, large, onClick }) => {
       disabled={!isValid}
       large={large}
       onClick={onClick}
+      customStyle={style}
     >
       {children}
     </StyledButton>
@@ -24,12 +25,23 @@ const ButtonLarge = css`
   font-weight: 600;
 `;
 
-const StyledButton = styled.button`
+const ButtonSmall = css`
+  width: 50px;
+  height: 30px;
+  border: none;
+  border-radius: 3px;
+  background-color: ${({ theme }) => theme.mainColor};
   color: white;
+  font-size: 14px;
+`;
+
+const StyledButton = styled.button`
   background-color: ${({ isValid, theme }) =>
     isValid ? theme.mainColor : theme.darkGrayColor};
   border: none;
   cursor: ${({ isValid }) => (isValid ? "pointer" : "default")};
-  ${({ large }) => large && ButtonLarge}
-  transition: all 300ms
+  color: white;
+  ${({ large }) => (large ? ButtonLarge : ButtonSmall)};
+  transition: all 300ms;
+  ${({ customStyle }) => customStyle}
 `;

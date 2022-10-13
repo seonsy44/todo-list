@@ -1,5 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { positionCenterY } from "../styles/mixins";
+import Button from "./Button";
 import RawInput from "./RawInput";
 
 const TodoInput = ({
@@ -9,6 +10,8 @@ const TodoInput = ({
   placeholder,
   buttonText,
   underLine = false,
+  cancelBtn = false,
+  onClickCancel,
 }) => {
   return (
     <InputContainter>
@@ -19,9 +22,21 @@ const TodoInput = ({
         type="text"
         placeholder={placeholder}
         underLine={underLine}
-        paddingRight="68"
+        paddingRight={cancelBtn ? "122" : "68"}
       />
-      <Button type="submit">{buttonText}</Button>
+      {cancelBtn && (
+        <Button
+          type="button"
+          isValid
+          onClick={onClickCancel}
+          style={CancelButton}
+        >
+          닫기
+        </Button>
+      )}
+      <Button type="submit" isValid style={EditButton}>
+        {buttonText}
+      </Button>
     </InputContainter>
   );
 };
@@ -34,15 +49,13 @@ const InputContainter = styled.div`
   height: 50px;
 `;
 
-const Button = styled.button`
-  ${positionCenterY()}
+const EditButton = css`
+  ${positionCenterY()};
   right: 10px;
-  width: 50px;
-  height: 30px;
-  border: none;
-  border-radius: 3px;
-  background-color: ${({ theme }) => theme.mainColor};
-  color: white;
-  font-size: 14px;
-  cursor: pointer;
+`;
+
+const CancelButton = css`
+  ${positionCenterY()};
+  right: 65px;
+  background-color: ${({ theme }) => theme.darkGrayColor};
 `;
