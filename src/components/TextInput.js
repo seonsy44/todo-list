@@ -14,6 +14,7 @@ const TextInput = ({ value, onChange, name, type, placeholder, isValid }) => {
           type={type}
           placeholder={placeholder}
           id={name}
+          autoComplete="off"
         />
         <IconCatinaer isValid={isValid}>
           <Check />
