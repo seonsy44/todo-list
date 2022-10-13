@@ -46,7 +46,8 @@ const TodoItem = ({
     handleTodoUpdate(updatedTodo);
   };
 
-  const handleDeleteClick = async () => {
+  const handleDeleteClick = async (e) => {
+    e.stopPropagation();
     const success = await deleteTodo({ id });
     if (success) handleTodoDelete(id);
   };
