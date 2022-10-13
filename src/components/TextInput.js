@@ -5,7 +5,7 @@ import { HiOutlineCheckCircle as Check } from "react-icons/hi";
 const TextInput = ({ value, onChange, name, type, placeholder, isValid }) => {
   return (
     <>
-      <Label for={name}>{name}</Label>
+      <Label htmlFor={name}>{name}</Label>
       <InputContainter>
         <Input
           value={value}
