@@ -15,7 +15,9 @@ const TextInput = ({ value, onChange, name, type, placeholder, isValid }) => {
           placeholder={placeholder}
           id={name}
         />
-        <CheckIcon isValid={isValid} />
+        <IconCatinaer isValid={isValid}>
+          <Check />
+        </IconCatinaer>
       </InputContainter>
     </>
   );
@@ -49,9 +51,9 @@ const Input = styled.input`
   }
 `;
 
-const CheckIcon = styled(Check)`
+const IconCatinaer = styled.div`
   ${positionCenterY()}
-  transform: translateY(-60%);
+  transform: translateY(-80%);
   right: 10px;
   font-size: 20px;
   color: ${({ theme, isValid }) =>
