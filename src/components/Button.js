@@ -1,12 +1,13 @@
 import styled, { css } from "styled-components";
 
-const Button = ({ children, type, isValid, large }) => {
+const Button = ({ children, type, isValid, large, onClick }) => {
   return (
     <StyledButton
       type={type}
       isValid={isValid}
       disabled={!isValid}
       large={large}
+      onClick={onClick}
     >
       {children}
     </StyledButton>
