@@ -2,7 +2,7 @@ import { useState } from "react";
 import useAuthRegister from "../hooks/useAuthRegister";
 import AuthForm from "./AuthForm";
 import Button from "./Button";
-import TextInput from "./TextInput";
+import AuthInput from "./AuthInput";
 
 const RegisterForm = ({ setIsLogining }) => {
   const [email, setEmail] = useState("");
@@ -34,7 +34,7 @@ const RegisterForm = ({ setIsLogining }) => {
       navigateText="로그인"
       onClickNavigate={handleLoginClick}
     >
-      <TextInput
+      <AuthInput
         value={email}
         onChange={handleEmailChange}
         name="Email"
@@ -43,7 +43,7 @@ const RegisterForm = ({ setIsLogining }) => {
         isValid={isEmailValid}
       />
 
-      <TextInput
+      <AuthInput
         value={password}
         onChange={handlePwChange}
         name="Password"
@@ -52,7 +52,7 @@ const RegisterForm = ({ setIsLogining }) => {
         isValid={isPwValid}
       />
 
-      <TextInput
+      <AuthInput
         value={confirmPassword}
         onChange={handleConfirmPwChange}
         name="Confirm"

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useAuthLogin from "../hooks/useAuthLogin";
 import AuthForm from "./AuthForm";
 import Button from "./Button";
-import TextInput from "./TextInput";
+import AuthInput from "./AuthInput";
 
 const LoginForm = ({ setIsLogining }) => {
   const [email, setEmail] = useState("");
@@ -33,7 +33,7 @@ const LoginForm = ({ setIsLogining }) => {
       navigateText="회원가입"
       onClickNavigate={handleRegisterClick}
     >
-      <TextInput
+      <AuthInput
         value={email}
         onChange={handleEmailChange}
         name="Email"
@@ -42,7 +42,7 @@ const LoginForm = ({ setIsLogining }) => {
         isValid={isEmailValid}
       />
 
-      <TextInput
+      <AuthInput
         value={password}
         onChange={handlePwChange}
         name="Password"
