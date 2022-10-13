@@ -1,20 +1,20 @@
 import styled from "styled-components";
 import { positionCenterY } from "../styles/mixins";
 import { HiOutlineCheckCircle as Check } from "react-icons/hi";
+import RawInput from "./RawInput";
 
-const TextInput = ({ value, onChange, name, type, placeholder, isValid }) => {
+const AuthInput = ({ value, onChange, name, type, placeholder, isValid }) => {
   return (
     <>
       <Label htmlFor={name}>{name}</Label>
       <InputContainter>
-        <Input
+        <RawInput
           value={value}
           onChange={onChange}
           name={name}
           type={type}
           placeholder={placeholder}
-          id={name}
-          autoComplete="off"
+          paddingRight="35"
         />
         <IconCatinaer isValid={isValid}>
           <Check />
@@ -24,7 +24,7 @@ const TextInput = ({ value, onChange, name, type, placeholder, isValid }) => {
   );
 };
 
-export default TextInput;
+export default AuthInput;
 
 const Label = styled.label`
   color: ${({ theme }) => theme.mainColor};
@@ -33,28 +33,13 @@ const Label = styled.label`
 
 const InputContainter = styled.div`
   position: relative;
-`;
-
-const Input = styled.input`
-  width: 400px;
-  height: 50px;
-  padding: 10px;
+  width: 100%;
   margin-top: 8px;
-  margin-bottom: 20px;
-  box-sizing: border-box;
-  border: 1px solid ${({ theme }) => theme.mediumGrayColor};
-  background-color: ${({ theme }) => theme.lightGrayColor};
-  font-size: 18px;
-  color: ${({ theme }) => theme.mainColor};
-
-  &:focus {
-    outline: none;
-  }
 `;
 
 const IconCatinaer = styled.div`
-  ${positionCenterY()}
-  transform: translateY(-80%);
+  ${positionCenterY()};
+  height: 40px;
   right: 10px;
   font-size: 20px;
   color: ${({ theme, isValid }) =>
