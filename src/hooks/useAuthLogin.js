@@ -2,10 +2,10 @@ import { useContext } from "react";
 import { AlertModalContext } from "../contexts/alertModalContext";
 import useAxios from "./useAxios";
 
-const useAuthLogin = ({ email, password }) => {
+const useAuthLogin = () => {
   const axios = useAxios();
   const modal = useContext(AlertModalContext);
-  return async () => {
+  return async ({ email, password }) => {
     try {
       const res = await axios({ bearer: false }).post("/auth/signin", {
         email,

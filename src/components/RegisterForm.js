@@ -14,7 +14,7 @@ const RegisterForm = ({ setIsLogining }) => {
   const isConfirmPwValid = isPwValid && password === confirmPassword;
   const isFormValid = isEmailValid && isConfirmPwValid;
 
-  const authRegister = useAuthRegister({ email, password });
+  const authRegister = useAuthRegister();
 
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePwChange = (e) => setPassword(e.target.value);
@@ -23,7 +23,7 @@ const RegisterForm = ({ setIsLogining }) => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    const success = await authRegister();
+    const success = await authRegister({ email, password });
     if (success) setIsLogining(true);
   };
 

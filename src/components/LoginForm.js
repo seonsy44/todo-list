@@ -13,7 +13,7 @@ const LoginForm = ({ setIsLogining }) => {
   const isPwValid = password.length >= 8;
   const isFormValid = isEmailValid && isPwValid;
 
-  const authLogin = useAuthLogin({ email, password });
+  const authLogin = useAuthLogin();
   const navigate = useNavigate();
 
   const handleEmailChange = (e) => setEmail(e.target.value);
@@ -22,7 +22,7 @@ const LoginForm = ({ setIsLogining }) => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    const success = await authLogin();
+    const success = await authLogin({ email, password });
     if (success) navigate("/todo");
   };
 
