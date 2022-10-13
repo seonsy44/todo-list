@@ -1,9 +1,15 @@
 import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import Root from "./routes/root";
+import Todo from "./routes/todo";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
+    element: <Root />,
+  },
+  {
+    path: "todo",
+    element: <Todo />,
   },
 ]);
 
