@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import Button from "../components/Button";
 import Container from "../components/Container";
 import TodoInput from "../components/TodoInput";
 import TodoItem from "../components/TodoItem";
@@ -19,6 +20,11 @@ const Todo = () => {
   const createTodo = useCreateTodo();
 
   const handleValueChange = (e) => setTodoValue(e.target.value);
+
+  const handleLogoutClick = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -49,7 +55,17 @@ const Todo = () => {
   return (
     <Container>
       <TodoContainer>
-        <Title>To Do</Title>
+        <TodoHeader>
+          <Title>To Do</Title>
+          <Button
+            type="button"
+            isValid
+            style={LogoutButton}
+            onClick={handleLogoutClick}
+          >
+            로그아웃
+          </Button>
+        </TodoHeader>
         <form onSubmit={handleFormSubmit}>
           <TodoInput
             value={todoValue}
@@ -79,6 +95,10 @@ const TodoContainer = styled.div`
   width: 100%;
 `;
 
+const TodoHeader = styled.div`
+  ${flexBox("row", "space-between")};
+`;
+
 const Title = styled.h1`
   margin: 0;
   margin-bottom: 15px;
@@ -95,4 +115,15 @@ const NoTodo = styled.div`
   height: 350px;
   font-size: 30px;
   color: ${({ theme }) => theme.darkGrayColor};
+`;
+
+const LogoutButton = css`
+  width: 70px;
+  background-color: white;
+  border: 1px solid ${({ theme }) => theme.mainColor};
+  color: ${({ theme }) => theme.mainColor};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.mediumGrayColor};
+  }
 `;
