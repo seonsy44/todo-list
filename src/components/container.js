@@ -17,10 +17,11 @@ export default Container;
 const ContainerOuter = styled.div`
   width: 100vw;
   height: 100vh;
-  ${flexBox()}
+  ${flexBox()};
 `;
 
 const ContainerInner = styled.div`
+  ${flexBox("row", "center", "flex-start")};
   position: relative;
   width: 800px;
   height: 600px;

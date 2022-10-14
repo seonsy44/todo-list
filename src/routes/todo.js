@@ -94,7 +94,6 @@ export default Todo;
 
 const TodoContainer = styled.div`
   width: 70%;
-  transform: translateX(15%);
 `;
 
 const Title = styled.h1`
