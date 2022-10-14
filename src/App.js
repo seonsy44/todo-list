@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 import Root from "./routes/root";
 import Todo from "./routes/todo";
+import { TodoProvider } from "./contexts/todoContext";
 
 const router = createBrowserRouter([
   {
@@ -9,7 +10,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/todo",
-    element: <Todo />,
+    element: (
+      <TodoProvider>
+        <Todo />
+      </TodoProvider>
+    ),
   },
 ]);
 

@@ -3,18 +3,16 @@ import { flexBox } from "../styles/mixins";
 import TodoInput from "./TodoInput";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { BsCheckLg } from "react-icons/bs";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import useUpdateTodo from "../hooks/useUpdateTodo";
 import useDeleteTodo from "../hooks/useDeleteTodo";
+import { TodoContext } from "../contexts/todoContext";
 
-const TodoItem = ({
-  todoItem: { id, todo, isCompleted },
-  handleTodoUpdate,
-  handleTodoDelete,
-}) => {
+const TodoItem = ({ todoItem: { id, todo, isCompleted } }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState(todo);
 
+  const todos = useContext(TodoContext);
   const updateTodo = useUpdateTodo();
   const deleteTodo = useDeleteTodo();
 
@@ -25,7 +23,7 @@ const TodoItem = ({
     setIsEditing(true);
   };
 
-  const handleCancelClick = () => {
+  const handleCancelEdit = () => {
     setEditValue(todo);
     setIsEditing(false);
   };
@@ -33,8 +31,8 @@ const TodoItem = ({
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const updatedTodo = await updateTodo({ id, todo: editValue, isCompleted });
-    handleTodoUpdate(updatedTodo);
-    handleCancelClick();
+    todos.updateOne(updatedTodo);
+    handleCancelEdit();
   };
 
   const handleCompleteClick = async () => {
@@ -43,13 +41,13 @@ const TodoItem = ({
       todo,
       isCompleted: !isCompleted,
     });
-    handleTodoUpdate(updatedTodo);
+    todos.updateOne(updatedTodo);
   };
 
   const handleDeleteClick = async (e) => {
     e.stopPropagation();
     const success = await deleteTodo({ id });
-    if (success) handleTodoDelete(id);
+    if (success) todos.deleteOne(id);
   };
 
   if (isEditing)
@@ -62,7 +60,7 @@ const TodoItem = ({
           buttonText="수정"
           underLine
           cancelBtn
-          onClickCancel={handleCancelClick}
+          onClickCancel={handleCancelEdit}
         />
       </form>
     );

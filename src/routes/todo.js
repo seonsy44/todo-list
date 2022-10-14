@@ -1,18 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Container from "../components/Container";
 import TodoInput from "../components/TodoInput";
 import TodoItem from "../components/TodoItem";
+import { TodoContext } from "../contexts/todoContext";
 import useCreateTodo from "../hooks/useCreateTodo";
 import useGetTodos from "../hooks/useGetTodos";
 import { flexBox } from "../styles/mixins";
 
 const Todo = () => {
   const [todoValue, setTodoValue] = useState("");
-  const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const todos = useContext(TodoContext);
   const navigate = useNavigate();
   const getTodos = useGetTodos();
   const createTodo = useCreateTodo();
@@ -27,26 +28,13 @@ const Todo = () => {
     const newTodo = await createTodo({ todo: todoValue });
     if (newTodo) {
       setTodoValue("");
-      setTodos([...todos, newTodo]);
+      todos.addOne(newTodo);
     }
-  };
-
-  const handleTodoUpdate = (edited) => {
-    const newTodos = todos.map((todo) => {
-      if (todo.id === edited.id) return edited;
-      return todo;
-    });
-    setTodos(newTodos);
-  };
-
-  const handleTodoDelete = (id) => {
-    const newTodos = todos.filter((todo) => todo.id !== id);
-    setTodos(newTodos);
   };
 
   const fetchTodos = async () => {
     const data = await getTodos();
-    setTodos(data);
+    todos.set(data);
     setLoading(false);
   };
 
@@ -71,18 +59,13 @@ const Todo = () => {
           />
         </form>
 
-        {!todos.length && (
+        {!todos.list.length && (
           <NoTodo>{loading ? "Loading.." : "No TODO.."}</NoTodo>
         )}
 
         <TodoList>
-          {todos.map((todoItem) => (
-            <TodoItem
-              key={todoItem.id}
-              todoItem={todoItem}
-              handleTodoUpdate={handleTodoUpdate}
-              handleTodoDelete={handleTodoDelete}
-            />
+          {todos.list.map((todoItem) => (
+            <TodoItem key={todoItem.id} todoItem={todoItem} />
           ))}
         </TodoList>
       </TodoContainer>
