@@ -76,7 +76,7 @@ const Todo = () => {
 export default Todo;
 
 const TodoContainer = styled.div`
-  width: 70%;
+  width: 100%;
 `;
 
 const Title = styled.h1`

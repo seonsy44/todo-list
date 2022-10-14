@@ -21,9 +21,8 @@ const ContainerOuter = styled.div`
 `;
 
 const ContainerInner = styled.div`
-  ${flexBox("row", "center", "flex-start")};
   position: relative;
-  width: 800px;
+  width: 600px;
   height: 600px;
   padding: 30px;
   box-sizing: border-box;

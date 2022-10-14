@@ -66,22 +66,17 @@ const TodoItem = ({ todoItem: { id, todo, isCompleted } }) => {
     );
 
   return (
-    <TodoContainer onClick={handleCompleteClick}>
-      <SubContainer>
-        <Outlined isCompleted={isCompleted}>
-          <BsCheckLg />
-        </Outlined>
-        <Text isCompleted={isCompleted}>{todo}</Text>
-      </SubContainer>
-
-      <SubContainer>
-        <NotOutlined onClick={handleEditClick}>
-          <AiFillEdit />
-        </NotOutlined>
-        <NotOutlined onClick={handleDeleteClick}>
-          <AiFillDelete />
-        </NotOutlined>
-      </SubContainer>
+    <TodoContainer>
+      <Outlined isCompleted={isCompleted} onClick={handleCompleteClick}>
+        <BsCheckLg />
+      </Outlined>
+      <Text isCompleted={isCompleted}>{todo}</Text>
+      <NotOutlined onClick={handleEditClick}>
+        <AiFillEdit />
+      </NotOutlined>
+      <NotOutlined onClick={handleDeleteClick}>
+        <AiFillDelete />
+      </NotOutlined>
     </TodoContainer>
   );
 };
@@ -89,12 +84,12 @@ const TodoItem = ({ todoItem: { id, todo, isCompleted } }) => {
 export default TodoItem;
 
 const TodoContainer = styled.div`
-  ${flexBox("row", "space-between", "center")};
+  ${flexBox("row", "space-between", "flex-start")};
   width: 100%;
-  height: 50px;
-  border-radius: 10px;
+  padding: 13.5px 10px;
   margin-top: 1px;
-  cursor: pointer;
+  box-sizing: border-box;
+  border-radius: 10px;
   transition: all 200ms;
 
   &:hover {
@@ -102,23 +97,34 @@ const TodoContainer = styled.div`
   }
 `;
 
-const SubContainer = styled.div`
-  ${flexBox("row", "flex-start", "center")};
-`;
-
 const Text = styled.span`
-  font-size: 20px;
+  display: block;
+  width: 400px;
+  padding: 0 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 18px;
   color: ${({ theme, isCompleted }) =>
     isCompleted ? theme.darkGrayColor : theme.mainColor};
   text-decoration: ${({ isCompleted }) => isCompleted && "line-through"};
+  z-index: 1;
+
+  ${TodoContainer}:hover & {
+    overflow: visible;
+    white-space: normal;
+    z-index: 2;
+    background-color: ${({ theme }) => theme.white};
+  }
 `;
 
 const IconContainer = css`
   ${flexBox()};
-  margin-right: 7px;
   width: 25px;
   color: ${({ theme, isCompleted }) =>
     isCompleted ? theme.pointColor : theme.darkGrayColor};
+  cursor: pointer;
   transition: all 200ms;
 `;
 
@@ -126,7 +132,7 @@ const Outlined = styled.div`
   ${IconContainer}
   width: 18px;
   height: 18px;
-  margin-left: 7px;
+  margin-top: 1px;
   border: 1px solid
     ${({ theme, isCompleted }) =>
       isCompleted ? theme.pointColor : theme.darkGrayColor};
@@ -136,7 +142,7 @@ const Outlined = styled.div`
 
 const NotOutlined = styled.div`
   ${IconContainer}
-  font-size: 24px;
+  font-size: 23px;
   &:hover {
     color: ${({ theme }) => theme.pointColor};
   }
