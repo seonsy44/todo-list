@@ -15,7 +15,10 @@ const useAuthLogin = () => {
       localStorage.setItem("token", access_token);
       return true;
     } catch (error) {
-      modal.show(error.response.data.message);
+      const { data } = error.response;
+      if (data.statusCode === 404) modal.show(data.message);
+      else if (data.statusCode === 401)
+        modal.show("비밀번호를 다시 확인해 주세요.");
       return false;
     }
   };
