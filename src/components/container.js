@@ -1,13 +1,10 @@
 import styled from "styled-components";
-import { AlertModalProvider } from "../contexts/alertModalContext";
 import { flexBox } from "../styles/mixins";
 
 const Container = ({ children }) => {
   return (
     <ContainerOuter>
-      <ContainerInner>
-        <AlertModalProvider>{children}</AlertModalProvider>
-      </ContainerInner>
+      <ContainerInner>{children}</ContainerInner>
     </ContainerOuter>
   );
 };

@@ -37,10 +37,10 @@ const ModalContainer = styled.div`
   height: 50px;
   border-radius: 3px;
   border: 1px solid ${({ theme }) => theme.darkGrayColor};
-  opacity: 0.7;
   background-color: white;
   box-shadow: 0 0 5px ${({ theme }) => theme.mediumGrayColor};
   overflow: hidden;
+  z-index: 2;
   animation: ${ModalShow} 3s linear;
 `;
 
