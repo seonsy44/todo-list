@@ -5,7 +5,7 @@ import LoginForm from "../components/LoginForm";
 import RegisterForm from "../components/RegisterForm";
 
 const Root = () => {
-  const [isLogining, setIsLogining] = useState(true);
+  const [isLoginPage, setIsLoginPage] = useState(true);
 
   const navigate = useNavigate();
 
@@ -16,10 +16,10 @@ const Root = () => {
 
   return (
     <Container>
-      {isLogining ? (
-        <LoginForm setIsLogining={setIsLogining} />
+      {isLoginPage ? (
+        <LoginForm setIsLoginPage={setIsLoginPage} />
       ) : (
-        <RegisterForm setIsLogining={setIsLogining} />
+        <RegisterForm setIsLoginPage={setIsLoginPage} />
       )}
     </Container>
   );

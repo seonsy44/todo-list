@@ -5,7 +5,7 @@ import AuthForm from "./AuthForm";
 import Button from "./Button";
 import AuthInput from "./AuthInput";
 
-const LoginForm = ({ setIsLogining }) => {
+const LoginForm = ({ setIsLoginPage }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -18,7 +18,7 @@ const LoginForm = ({ setIsLogining }) => {
 
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePwChange = (e) => setPassword(e.target.value);
-  const handleRegisterClick = () => setIsLogining(false);
+  const handleRegisterClick = () => setIsLoginPage(false);
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 

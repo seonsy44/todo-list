@@ -4,7 +4,7 @@ import AuthForm from "./AuthForm";
 import Button from "./Button";
 import AuthInput from "./AuthInput";
 
-const RegisterForm = ({ setIsLogining }) => {
+const RegisterForm = ({ setIsLoginPage }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -19,12 +19,12 @@ const RegisterForm = ({ setIsLogining }) => {
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePwChange = (e) => setPassword(e.target.value);
   const handleConfirmPwChange = (e) => setConfirmPassword(e.target.value);
-  const handleLoginClick = () => setIsLogining(true);
+  const handleLoginClick = () => setIsLoginPage(true);
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     const success = await authRegister({ email, password });
-    if (success) setIsLogining(true);
+    if (success) setIsLoginPage(true);
   };
 
   return (
