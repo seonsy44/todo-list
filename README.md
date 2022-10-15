@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# 배포 링크
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### [배포링크](https://todo-list-seon.vercel.app/)
 
-## Available Scripts
+</br>
 
-In the project directory, you can run:
+# 프로젝트 실행
 
-### `npm start`
+```
+$ npm install
+$ npm start
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+</br>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# 주요 기능
 
-### `npm test`
+## 1) Auth
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 이메일과 비밀번호의 유효성 검사
+  - 이메일 조건: `@` 포함
+  - 비밀번호 조견: 8자 이상
+  - 입력된 이메일과 비밀번호가 위 조건을 만족할 때 버튼 활성화
+- 로그인 API를 호출하고, 올바른 응답을 받았을 때 `/todo` 경로로 이동
+  - 응답받은 JWT는 로컬 스토리지에 저장
+- 로그인 여부에 따른 리다이렉트 처리
+  - 로컬 스토리지에 토큰이 있는 경우 `/` 페이지 접속시 `/todo` 경로로 리다이렉트
+  - 로컬 스토리지에 토큰이 없는 경우 `/todo` 페이지 접속시 `/` 경로로 리다이렉트
+- 로그아웃 시 로컬 스토리지에서 토큰 삭제 후 `/` 경로로 이동
 
-### `npm run build`
+## 2) Todo list
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 조회 / 추가
+  - `/todo` 경로에 접속하면 투두 리스트의 목록 조회
+  - 투두 리스트 내용 및 완료 여부 표시
+  - 입력창과 추가버튼이 있고, 추가버튼 클릭시 입력창의 내용이 새로운 투두 리스트로 추가
+- 삭제 / 수정
+  - 수정버튼 존재, 해당 버튼을 누르면 수정모드 활성화, 내용 수정가능
+  - 수정모드에서 제출 버튼과 취소버튼이 표시되며 수정 내용 제출/취소 가능
+  - 삭제버튼이 존재, 해당 버튼을 누르면 투두 리스트 삭제
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+</br>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# 기술스택
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+React, React Router, Styled Components, Axios
